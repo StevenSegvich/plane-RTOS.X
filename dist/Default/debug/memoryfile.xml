@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/Default/debug/plane_RTOS.X.debug.elf">
+    <memory name="program">
+      <units>bytes</units>
+      <length>1048576</length>
+      <used>54575</used>
+      <free>994001</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>262144</length>
+      <used>10866</used>
+      <free>251278</free>
+    </memory>
+  </executable>
+</project>
