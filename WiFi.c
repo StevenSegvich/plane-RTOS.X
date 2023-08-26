@@ -61,6 +61,7 @@ void wifi_thread(void *param) {
             if(configureAP() != 0){
                 while(1){}
             }
+            
             if(enableUDP() != 0){
                 while(1){}
             }
@@ -75,12 +76,13 @@ void wifi_thread(void *param) {
                     xQueueReceive(
                         WiFiRXQueue,
                         &incoming,
-                        20
+                        3
                         );
                 
                 *response = incoming;
                 *response++;
                 }
+                vTaskDelay(500/portTICK_PERIOD_MS);
                 if(parseUDPHandshake(response) == -2){
                     //Garbage packet, wait and try again
                     memset(response, 0, sizeof(response));
@@ -101,7 +103,7 @@ int parseUDPHandshake(char *response){
     //Code here to comb through packet and see if everything looks good.
     //Compare to known checksum
     //3 returns ok, 0 is good, -1 means something was off in the packet, and -2 means the packet was garbage
-    return 0;
+    return -2;
 }
 
 int controllerHandshake(){
@@ -114,6 +116,18 @@ int controllerHandshake(){
     memset(response, 0, sizeof(response));
     err = transmitPacket(packet, response);
     return err;
+}
+
+testIP(){
+    char response[120];
+    int err = sendATCommand("AT+CIFSR", response, 10);
+    int retval = -1;
+    
+    if(strstr(response, "OK") == NULL) { // Couldn't find "OK" in response
+        retval = -1;
+    } else { // Found "OK" in response
+        retval = 0;
+    }
 }
 
 testcipmux(){
@@ -132,7 +146,7 @@ testcipmux(){
 int enableUDP(){
     testcipmux();
     char response[120];
-    int err = sendATCommand("AT+CIPSTART=\"UDP\",\"192.168.4.1\",333,333,0", response, 10);
+    int err = sendATCommand("AT+CIPSTART=\"UDP\",\"192.168.4.2\",333,333,0", response, 10);
     int retval = -1;
     
     if(strstr(response, "OK") == NULL) { // Couldn't find "OK" in response

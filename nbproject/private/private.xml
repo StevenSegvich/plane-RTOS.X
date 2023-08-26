@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/interrupts.c</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/hri/hri_sercom_e54.h</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/WiFi.c</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/CMSIS/Core/Include/cmsis_gcc.h</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/rtos_start.c</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/include/same54p20a.h</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/main.c</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/WiFi.h</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/atmel_start.c</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/thirdparty/RTOS/freertos/FreeRTOSV10.0.0/Source/timers.c</file>
-            <file>file:/C:/Users/Max/MPLABXProjects/plane%20RTOS.X/driver_init.c</file>
+            <file>file:/C:/Users/Loyola/MPLABXProjects/plane-RTOS.X/thirdparty/RTOS/freertos/FreeRTOSV10.0.0/Source/tasks.c</file>
+            <file>file:/C:/Users/Loyola/MPLABXProjects/plane-RTOS.X/main.c</file>
+            <file>file:/C:/Users/Loyola/MPLABXProjects/plane-RTOS.X/thirdparty/RTOS/freertos/FreeRTOSV10.0.0/Source/queue.c</file>
+            <file>file:/C:/Users/Loyola/MPLABXProjects/plane-RTOS.X/WiFi.c</file>
+            <file>file:/C:/Users/Loyola/MPLABXProjects/plane-RTOS.X/thirdparty/RTOS/freertos/FreeRTOSV10.0.0/Source/portable/GCC/ARM_CM4F/port.c</file>
+            <file>file:/C:/Users/Loyola/MPLABXProjects/plane-RTOS.X/thirdparty/RTOS/freertos/FreeRTOSV10.0.0/Source/portable/GCC/ARM_CM4F/portmacro.h</file>
+            <file>file:/C:/Users/Loyola/MPLABXProjects/plane-RTOS.X/interrupts.c</file>
         </group>
     </open-files>
 </project-private>
