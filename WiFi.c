@@ -72,19 +72,20 @@ void wifi_thread(void *param) {
         case WIFI_THREAD_STATE_CONTROLLER_HANDSHAKE:
             //At this point, the controller is only sending a single UDP packet every 5 seconds until it receives a ping back.
             while(1){
-                while(uxQueueMessagesWaiting(WiFiRXQueue) != 0){
-                    xQueueReceive(
-                        WiFiRXQueue,
-                        &incoming,
-                        3
-                        );
-                
+                xQueueReceive(
+                    WiFiRXQueue,
+                    &incoming,
+                    portMAX_DELAY
+                );
                 *response = incoming;
                 *response++;
                 }
-                vTaskDelay(500/portTICK_PERIOD_MS);
-                if(parseUDPHandshake(response) == -2){
-                    //Garbage packet, wait and try again
+                err = parseUDPHandshake(response);
+                if(err == -2){
+                    //Incomplete packet, wait for complete
+                    break;
+                }else if(err == -1){
+                    //packet was garbage, dump and try again
                     memset(response, 0, sizeof(response));
                     break;
                 }
@@ -92,8 +93,14 @@ void wifi_thread(void *param) {
                     while(1){}
                 }
                 wifi_thread_state = WIFI_THREAD_STATE_WAIT_INCOMING; 
-            }
             
+        
+        
+        case WIFI_THREAD_STATE_WAIT_INCOMING:
+            xQueueReceive(WiFiRXQueue, &incoming, portMAX_DELAY);
+            //Check if char is A?
+            //if so, switch to next case. If not, break
+            //Next code chunk cheks for chars up to packet start, stores each char waiting for packet end flag. Passes packet to parser/actuator. 
             
         }
     }
@@ -102,7 +109,7 @@ void wifi_thread(void *param) {
 int parseUDPHandshake(char *response){
     //Code here to comb through packet and see if everything looks good.
     //Compare to known checksum
-    //3 returns ok, 0 is good, -1 means something was off in the packet, and -2 means the packet was garbage
+    //1 returns ok, 0 is good, -2 means something was off in the packet, and -1 means the packet was garbage
     return -2;
 }
 
